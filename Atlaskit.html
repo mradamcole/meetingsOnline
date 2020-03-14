@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Yjs Atlaskit Example</title>
+  <script type="text/javascript" src="atlaskit.bundle.js" async=""></script>
+
+  <link rel="stylesheet" href="atlas.css">
+  <!-- <style data-styled-components=""></style> -->
+  <script charset="utf-8" src="vendors_@atlaskit-internal-editor-datepicker.bundle.js"></script>
+  <script charset="utf-8" src="vendors_@atlaskit-internal-editor-core-floating-toolbar.bundle.js"></script>
+  <style data-emotion="css"></style>
+
+  <script>
+    function pageReady() {
+      console.log("page is ready");
+      setTimeout(function () {
+        console.log("I waited for you");
+        var x = document.getElementsByClassName("kGpjoL")[0];
+        x.style.backgroundColor = "#f0f0f0";
+        x.style.height = "50px";
+        x.style.boxShadow = "0px 1px 5px 3px rgba(192,192,192,.8)";
+        x.style.position = "fixed";
+        x.style.top = "0";
+        x.style.left = "0";
+        x.style.width = "100%";
+        // x.style.width = document.getElementsByClassName("akEditor")[0].offsetWidth + "px";
+        // console.log( document.getElementsByClassName("ProseMirror")[0].innerHTML );
+      }, 1000);
+    }
+  </script>
+
+</head>
+
+<body style="margin:0px;" onload="pageReady()">
+  <div id="abc_background" style="background-color: #c0c0c0; width:100%; padding-top: 20px; padding-bottom: 20px;">
+    <div id="editor" style="width:826px; background-color: #ffffff; margin:auto; margin-top: 60px; -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);">
+      <div style="width: 100%; position: relative; height: 0px; border-style: none;"><object type="text/html"
+          aria-hidden="true" tabindex="-1"
+          style="display: block; position: absolute; top: 0px; left: 0px; height: 0px; width: 100%; opacity: 0; overflow: hidden; pointer-events: none; z-index: -1;"
+          data=""></object>
+      </div>
+      <div class="akEditor sc-jVODtj iGdDoP">
+        <div class="sc-fONwsr kGpjoL">
+          <!-- toolbar container -->
+          <div style="width: 100%; min-width: 254px;">
+            <div style="width: 100%; position: relative;">
+              <div class="sc-fAjcbJ iHHUto"><span class="sc-ifAKCX gSwprm">
+                  <div class="sc-hMqMXs MNUAF">
+                    <div>
+                      <div><button aria-haspopup="true" aria-label="Font style" type="button"
+                          class="block-type-btn css-tfbb96"><span class="css-1vqao0l"><span class="css-t5emrf"><span
+                                class="sc-gzVnrw ktHmEm"><span>Normal text</span>
+                                <div style="overflow: hidden; height: 0px;">Normal text</div>
+                              </span></span><span class="css-8xpfx5"><span class="sc-ifAKCX gSwprm"><span
+                                  class="sc-EHOje ldpQBF"><span class="sc-fjdhpX doBvDK" aria-label="Text styles"><svg
+                                      width="24" height="24" viewBox="0 0 24 24" focusable="false" role="presentation">
+                                      <path
+                                        d="M8.292 10.293a1.009 1.009 0 0 0 0 1.419l2.939 2.965c.218.215.5.322.779.322s.556-.107.769-.322l2.93-2.955a1.01 1.01 0 0 0 0-1.419.987.987 0 0 0-1.406 0l-2.298 2.317-2.307-2.327a.99.99 0 0 0-1.406 0z"
+                                        fill="currentColor" fill-rule="evenodd"></path>
+                                    </svg></span></span></span></span></span></button></div>
+                    </div>
+                  </div><span class="sc-bxivhb gNBOce"></span>
+                </span><span class="sc-htpNat jzKRKB" width="large"><span class="sc-htpNat jzKRKB" width="large">
+                    <div><button aria-haspopup="true" type="button" class=" css-1059ny" disabled=""><span
+                          class="css-1vqao0l"><span class="css-noix33"><span class="sc-fjdhpX doBvDK"
+                              aria-label="Bold"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false"
+                                role="presentation">
+                                <path
+                                  d="M8 6h4.832C13.908 6 16 6.5 16 9c0 1.333-.333 2.167-1 2.5 1.333.333 2 1.333 2 3 0 .5 0 3.5-4 3.5H8a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm1 10h3.5c1 0 2-.25 2-1.5s-1.104-1.5-2-1.5H9v3zm0-4.975h3c.504 0 2 0 2-1.525S12 8 12 8H9v3.025z"
+                                  fill="currentColor" fill-rule="evenodd"></path>
+                              </svg></span></span></span></button></div>
+                    <div><button aria-haspopup="true" type="button" class=" css-1059ny" disabled=""><span
+                          class="css-1vqao0l"><span class="css-noix33"><span class="sc-fjdhpX doBvDK"
+                              aria-label="Italic"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false"
+                                role="presentation">
+                                <path
+                                  d="M10 6h6a1 1 0 0 1 0 2h-6a1 1 0 1 1 0-2zM8 16h6a1 1 0 0 1 0 2H8a1 1 0 0 1 0-2zm4-8h2l-2 8h-2l2-8z"
+                                  fill="currentColor" fill-rule="evenodd"></path>
+                              </svg></span></span></span></button></div>
+                  </span><span class="sc-ifAKCX gSwprm">
+                    <div>
+                      <div><button aria-haspopup="true" type="button" disabled="" class=" css-1059ny"><span
+                            class="css-1vqao0l"><span class="css-noix33">
+                              <div class="sc-bZQynM kzlsZH"><span class="sc-fjdhpX doBvDK"
+                                  aria-label="More formatting"><svg width="24" height="24" viewBox="0 0 24 24"
+                                    focusable="false" role="presentation">
+                                    <path
+                                      d="M12 14a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-4.5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm9 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"
+                                      fill="currentColor" fill-rule="evenodd"></path>
+                                  </svg></span></div>
+                            </span></span></button></div>
+                    </div><span class="sc-bxivhb gNBOce"></span>
+                  </span></span><span class="sc-btzYZH dyHXQC">
+                  <div>
+                    <div>
+                      <div><button aria-haspopup="true" aria-label="Text alignment" type="button"
+                          class="align-btn css-1059ny" disabled=""><span class="css-1vqao0l"><span class="css-noix33">
+                              <div class="sc-cmTdod bjTaMy"><span class="sc-fjdhpX doBvDK" aria-label="Align left"><svg
+                                    width="24" height="24" viewBox="0 0 24 24" focusable="false" role="presentation">
+                                    <path
+                                      d="M7 7h10a1 1 0 0 1 0 2H7a1 1 0 1 1 0-2zm0 4h10a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2zm0 4h5a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2z"
+                                      fill="currentColor" fill-rule="evenodd"></path>
+                                  </svg></span><span class="sc-lhVmIH eREdfJ"><span class="sc-fjdhpX doBvDK"
+                                    aria-label="Alignment"><svg width="24" height="24" viewBox="0 0 24 24"
+                                      focusable="false" role="presentation">
+                                      <path
+                                        d="M8.292 10.293a1.009 1.009 0 0 0 0 1.419l2.939 2.965c.218.215.5.322.779.322s.556-.107.769-.322l2.93-2.955a1.01 1.01 0 0 0 0-1.419.987.987 0 0 0-1.406 0l-2.298 2.317-2.307-2.327a.99.99 0 0 0-1.406 0z"
+                                        fill="currentColor" fill-rule="evenodd"></path>
+                                    </svg></span></span></div>
+                            </span></span></button></div>
+                    </div>
+                  </div><span class="sc-jwKygS iAaISF"></span>
+                </span><span class="sc-ifAKCX gSwprm">
+                  <div>
+                    <div>
+                      <div><button aria-haspopup="true" type="button" class=" css-1059ny" disabled=""><span
+                            class="css-1vqao0l"><span class="css-noix33">
+                              <div class="sc-bZQynM kzlsZH">
+                                <div class="sc-jtRfpW bGjGIm"><span class="sc-fjdhpX doBvDK"
+                                    aria-label="Text color icon"><svg width="24" height="24"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                      <path
+                                        d="M14 12.5h-4l-.874 2.186A.5.5 0 0 1 8.66 15H7.273a.5.5 0 0 1-.456-.705l4.05-9A.5.5 0 0 1 11.323 5h1.354a.5.5 0 0 1 .456.295l4.05 9a.5.5 0 0 1-.456.705h-1.388a.5.5 0 0 1-.465-.314L14 12.5zm-.6-1.5L12 7.5 10.6 11h2.8z"
+                                        fill="currentColor" fill-rule="evenodd"></path>
+                                    </svg></span>
+                                  <div class="sc-kTUwUJ VmSuZ"></div>
+                                </div><span class="sc-EHOje ldpQBF"><span class="sc-fjdhpX doBvDK"
+                                    aria-label="Text color"><svg width="24" height="24" viewBox="0 0 24 24"
+                                      focusable="false" role="presentation">
+                                      <path
+                                        d="M8.292 10.293a1.009 1.009 0 0 0 0 1.419l2.939 2.965c.218.215.5.322.779.322s.556-.107.769-.322l2.93-2.955a1.01 1.01 0 0 0 0-1.419.987.987 0 0 0-1.406 0l-2.298 2.317-2.307-2.327a.99.99 0 0 0-1.406 0z"
+                                        fill="currentColor" fill-rule="evenodd"></path>
+                                    </svg></span></span>
+                              </div>
+                            </span></span></button></div>
+                    </div>
+                  </div><span class="sc-bxivhb gNBOce"></span>
+                </span><span class="sc-htpNat jzKRKB" width="large">
+                  <div><button aria-haspopup="true" type="button" class=" css-1059ny" disabled=""><span
+                        class="css-1vqao0l"><span class="css-noix33"><span class="sc-fjdhpX doBvDK"
+                            aria-label="Bullet list"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false"
+                              role="presentation">
+                              <path
+                                d="M6 8c0-.552.444-1 1-1 .552 0 1 .444 1 1 0 .552-.444 1-1 1-.552 0-1-.444-1-1zm5-1h6a1 1 0 0 1 0 2h-6a1 1 0 0 1 0-2zm-5 5c0-.552.444-1 1-1 .552 0 1 .444 1 1 0 .552-.444 1-1 1-.552 0-1-.444-1-1zm5-1h6a1 1 0 0 1 0 2h-6a1 1 0 0 1 0-2zm-5 5c0-.552.444-1 1-1 .552 0 1 .444 1 1 0 .552-.444 1-1 1-.552 0-1-.444-1-1zm5-1h6a1 1 0 0 1 0 2h-6a1 1 0 0 1 0-2z"
+                                fill="currentColor" fill-rule="evenodd"></path>
+                            </svg></span></span></span></button></div>
+                  <div><button aria-haspopup="true" type="button" class=" css-1059ny" disabled=""><span
+                        class="css-1vqao0l"><span class="css-noix33"><span class="sc-fjdhpX doBvDK"
+                            aria-label="Numbered list"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false"
+                              role="presentation">
+                              <path
+                                d="M11 7h6a1 1 0 0 1 0 2h-6a1 1 0 0 1 0-2zm0 4h6a1 1 0 0 1 0 2h-6a1 1 0 0 1 0-2zm0 4h6a1 1 0 0 1 0 2h-6a1 1 0 0 1 0-2zm-5 0h3v1H6v-1zm0 2h3v1H6v-1zm1-9H6V7h2v3H7V8zm-1 3h3v1.333h-.6V13H7.2v-.667H6V11zm0 2h3v1H6v-1zm2 3h2v1H8v-1z"
+                                fill="currentColor" fill-rule="evenodd"></path>
+                            </svg></span></span></span></button></div><span class="sc-bxivhb gNBOce"></span>
+                </span><span class="sc-htpNat jzKRKB" width="large">
+                  <div><button aria-haspopup="true" type="button" class=" css-1059ny" disabled=""><span
+                        class="css-1vqao0l"><span class="css-noix33"><span class="sc-fjdhpX doBvDK"
+                            aria-label="Link"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false"
+                              role="presentation">
+                              <path
+                                d="M12.654 8.764a.858.858 0 0 1-1.213-1.213l1.214-1.214a3.717 3.717 0 0 1 5.257 0 3.714 3.714 0 0 1 .001 5.258l-1.214 1.214-.804.804a3.72 3.72 0 0 1-5.263.005.858.858 0 0 1 1.214-1.214c.781.782 2.05.78 2.836-.005l.804-.803 1.214-1.214a1.998 1.998 0 0 0-.001-2.831 2 2 0 0 0-2.83 0l-1.215 1.213zm-.808 6.472a.858.858 0 0 1 1.213 1.213l-1.214 1.214a3.717 3.717 0 0 1-5.257 0 3.714 3.714 0 0 1-.001-5.258l1.214-1.214.804-.804a3.72 3.72 0 0 1 5.263-.005.858.858 0 0 1-1.214 1.214 2.005 2.005 0 0 0-2.836.005l-.804.803L7.8 13.618a1.998 1.998 0 0 0 .001 2.831 2 2 0 0 0 2.83 0l1.215-1.213z"
+                                fill="currentColor"></path>
+                            </svg></span></span></span></button></div>
+                  <div><button aria-haspopup="true" type="button" class=" css-tfbb96"><span class="css-1vqao0l"><span
+                          class="css-noix33"><span class="sc-fjdhpX doBvDK" aria-label="Table"><svg width="24"
+                              height="24" viewBox="0 0 24 24" focusable="false" role="presentation">
+                              <path
+                                d="M8 6h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm0 2v3h3V8H8zm5 0v3h3V8h-3zm-5 5v3h3v-3H8zm5 0v3h3v-3h-3z"
+                                fill="currentColor" fill-rule="evenodd"></path>
+                            </svg></span></span></span></button></div>
+                  <div><button aria-haspopup="true" type="button" class=" css-tfbb96"><span class="css-1vqao0l"><span
+                          class="css-noix33"><span class="sc-fjdhpX doBvDK" aria-label="Layouts"><svg width="24"
+                              height="24" viewBox="0 0 24 24" focusable="false" role="presentation">
+                              <path
+                                d="M5 5h5a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 0h5a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"
+                                fill="currentColor" fill-rule="evenodd"></path>
+                            </svg></span></span></span></button></div>
+                  <div><button aria-haspopup="true" type="button" class=" css-tfbb96"><span class="css-1vqao0l"><span
+                          class="css-noix33"><span class="sc-fjdhpX doBvDK" aria-label="Quote"><svg width="24"
+                              height="24" viewBox="0 0 24 24" focusable="false" role="presentation">
+                              <path
+                                d="M16.051 6c-1.571 0-2.847 1.312-2.847 2.93 0 1.617 1.276 2.93 2.847 2.93 2.699 0 1.135 5.088-2.269 5.618a.68.68 0 0 0-.578.671c0 .416.372.745.784.682 6.187-.938 8.387-12.83 2.063-12.83M7.848 6C6.275 6 5 7.311 5 8.93c0 1.616 1.275 2.928 2.848 2.928 2.698 0 1.134 5.09-2.27 5.62a.68.68 0 0 0-.578.67c0 .416.372.745.783.682C11.972 17.892 14.172 6 7.848 6"
+                                fill="currentColor" fill-rule="evenodd"></path>
+                            </svg></span></span></span></button></div>
+                  <div><button aria-haspopup="true" type="button" class=" css-tfbb96"><span class="css-1vqao0l"><span
+                          class="css-noix33"><span class="sc-fjdhpX doBvDK" aria-label="Code snippet"><svg width="24"
+                              height="24" viewBox="0 0 24 24" focusable="false" role="presentation">
+                              <path
+                                d="M10.208 7.308a1.09 1.09 0 0 1 0 1.483l-3.515 3.71 3.515 3.708a1.09 1.09 0 0 1 0 1.483.957.957 0 0 1-1.405 0l-3.866-4.08a1.635 1.635 0 0 1 0-2.225l3.866-4.08a.957.957 0 0 1 1.405 0zm3.584 0a.957.957 0 0 1 1.405 0l3.866 4.08c.583.614.583 1.61 0 2.225l-3.866 4.08a.957.957 0 0 1-1.405 0 1.09 1.09 0 0 1 0-1.484l3.515-3.708-3.515-3.71a1.09 1.09 0 0 1 0-1.483z"
+                                fill="currentColor" fill-rule="evenodd"></path>
+                            </svg></span></span></span></button></div>
+                  <div><button aria-haspopup="true" type="button" class=" css-tfbb96"><span class="css-1vqao0l"><span
+                          class="css-noix33"><span class="sc-fjdhpX doBvDK" aria-label="Info panel"><svg width="24"
+                              height="24" viewBox="0 0 24 24" focusable="false" role="presentation">
+                              <path
+                                d="M12 20a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-8.5a1 1 0 0 0-1 1V15a1 1 0 0 0 2 0v-2.5a1 1 0 0 0-1-1zm0-1.125a1.375 1.375 0 1 0 0-2.75 1.375 1.375 0 0 0 0 2.75z"
+                                fill="currentColor" fill-rule="evenodd"></path>
+                            </svg></span></span></span></button></div>
+                  <div><button aria-haspopup="true" type="button" class=" css-tfbb96"><span class="css-1vqao0l"><span
+                          class="css-noix33"><span class="sc-fjdhpX doBvDK" aria-label="Divider"><svg width="24"
+                              height="24" viewBox="0 0 24 24" focusable="false" role="presentation">
+                              <rect fill="currentColor" x="5" y="11" width="14" height="2" rx="1" fill-rule="evenodd">
+                              </rect>
+                            </svg></span></span></span></button></div><span class="sc-ifAKCX gSwprm">
+                    <div class="sc-hMqMXs MNUAF">
+                      <div>
+                        <div><button aria-haspopup="true" type="button" class=" css-tfbb96"><span
+                              class="css-1vqao0l"><span class="css-noix33"><span class="sc-jWBwVP kEdNMN"><span
+                                    class="sc-fjdhpX doBvDK" aria-label="Insert"><svg width="24" height="24"
+                                      viewBox="0 0 24 24" focusable="false" role="presentation">
+                                      <path
+                                        d="M13 11V7a1 1 0 0 0-2 0v4H7a1 1 0 0 0 0 2h4v4a1 1 0 0 0 2 0v-4h4a1 1 0 0 0 0-2h-4z"
+                                        fill="currentColor" fill-rule="evenodd"></path>
+                                    </svg></span><span class="sc-EHOje ldpQBF"><span class="sc-fjdhpX doBvDK"
+                                      aria-label="Insert"><svg width="24" height="24" viewBox="0 0 24 24"
+                                        focusable="false" role="presentation">
+                                        <path
+                                          d="M8.292 10.293a1.009 1.009 0 0 0 0 1.419l2.939 2.965c.218.215.5.322.779.322s.556-.107.769-.322l2.93-2.955a1.01 1.01 0 0 0 0-1.419.987.987 0 0 0-1.406 0l-2.298 2.317-2.307-2.327a.99.99 0 0 0-1.406 0z"
+                                          fill="currentColor" fill-rule="evenodd"></path>
+                                      </svg></span></span></span></span></span></button></div>
+                      </div>
+                    </div>
+                  </span>
+                </span></div><object type="text/html" aria-hidden="true" tabindex="-1"
+                style="display: block; position: absolute; top: 0px; left: 0px; height: 0px; width: 100%; opacity: 0; overflow: hidden; pointer-events: none; z-index: -1;"
+                data=""></object>
+            </div>
+          </div>
+          <div class="sc-VJcYb igYhYO"></div>
+        </div>
+
+        <!-- Toolbar ends, editor begins-->
+
+        <div class="fabric-editor-popup-scroll-parent sc-kUaPvJ dsojIN sc-fzsDOv ggXwKS">
+          <div class="sc-gPWkxV iPsdes">
+            <div class="sc-giadOv ktgNGo">
+              <div class="ak-editor-content-area " style="padding: 0px 32px;">
+                <div class="sc-eMigcr kluLBK"></div>
+                <div class="ua-chrome ProseMirror pm-table-resizing-plugin" contenteditable="true" data-gramm="false">
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p></p>
+  <button type="button" id="y-connect-btn">Disconnect</button>
+  Note: Line 94252 ( t = new Mn("wss://demos.yjs.dev", "atlaskit", e), ) --> "atlaskit"<br>
+  InnerHTML (content) begins at "data-gramm"
+  <p></p>
+
+</body>
+
+</html>
