@@ -4,30 +4,29 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <title>Yjs Atlaskit Example</title>
-  <script type="text/javascript" src="atlaskit.bundle.js" async=""></script>
+  <title>Meetings Online</title>
+  <link rel="shortcut icon" href="favicon.ico">
 
+  <script type="text/javascript" src="atlaskit.bundle.js" async=""></script>
   <link rel="stylesheet" href="atlas.css">
-  <!-- <style data-styled-components=""></style> -->
+  <style data-styled-components=""></style>
   <script charset="utf-8" src="vendors_@atlaskit-internal-editor-datepicker.bundle.js"></script>
   <script charset="utf-8" src="vendors_@atlaskit-internal-editor-core-floating-toolbar.bundle.js"></script>
   <style data-emotion="css"></style>
 
   <script>
     function pageReady() {
-      console.log("page is ready");
       setTimeout(function () {
-        console.log("I waited for you");
         var x = document.getElementsByClassName("kGpjoL")[0];
         x.style.backgroundColor = "#f0f0f0";
         x.style.height = "50px";
         x.style.boxShadow = "0px 1px 5px 3px rgba(192,192,192,.8)";
         x.style.position = "fixed";
         x.style.top = "0";
+        // x.style.width = "826px";
         x.style.left = "0";
         x.style.width = "100%";
-        // x.style.width = document.getElementsByClassName("akEditor")[0].offsetWidth + "px";
-        // console.log( document.getElementsByClassName("ProseMirror")[0].innerHTML );
+        document.getElementsByClassName("cHBcts")[0].style.overflow = "hidden"  //Firefox specific to hide the vertical scrollbar
       }, 1000);
     }
   </script>
@@ -36,9 +35,7 @@
 
 <body style="margin:0px;" onload="pageReady()">
   <div id="abc_background" style="background-color: #c0c0c0; width:100%; padding-top: 20px; padding-bottom: 20px;">
-    <div id="editor" style="width:826px; background-color: #ffffff; margin:auto; margin-top: 60px; -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);">
+    <div id="editor" style="width:826px; background-color: #ffffff; margin: auto; margin-top: 50px; -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75); box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);">
       <div style="width: 100%; position: relative; height: 0px; border-style: none;"><object type="text/html"
           aria-hidden="true" tabindex="-1"
           style="display: block; position: absolute; top: 0px; left: 0px; height: 0px; width: 100%; opacity: 0; overflow: hidden; pointer-events: none; z-index: -1;"
@@ -254,8 +251,11 @@
     </div>
   </div>
 
+  <div id="abc_moreTools" style="position: fixed; top: 0px; right: 20px; z-index: 501; line-height: 50px; height: 50px; font-family:Arial, Helvetica, sans-serif; color: #42526e; font-size: 17px;">
+    Room, Users, Save, Load
+  </div>
+
   <p></p>
-  <button type="button" id="y-connect-btn">Disconnect</button>
   Note: Line 94252 ( t = new Mn("wss://demos.yjs.dev", "atlaskit", e), ) --> "atlaskit"<br>
   InnerHTML (content) begins at "data-gramm"
   <p></p>
