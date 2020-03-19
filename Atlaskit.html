@@ -7,12 +7,126 @@
   <title>Meetings Online</title>
   <link rel="shortcut icon" href="favicon.ico">
 
+  <!-- Bootstrap: CDN -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://storage.googleapis.com/non-spec-apps/mio-icons/latest/outline.css">
+  <!-- Bootstrap: local -->
+  <!-- <link rel="stylesheet" href="../bootstrap-4.4.1-dist/css/bootstrap.min.css">
+  <script src="../bootstrap-4.4.1-dist/js/bootstrap.min.js"></script> -->
+
+  <!-- Atlas -->
   <script type="text/javascript" src="atlaskit.bundle.js" async=""></script>
   <link rel="stylesheet" href="atlas.css">
   <style data-styled-components=""></style>
   <script charset="utf-8" src="vendors_@atlaskit-internal-editor-datepicker.bundle.js"></script>
   <script charset="utf-8" src="vendors_@atlaskit-internal-editor-core-floating-toolbar.bundle.js"></script>
   <style data-emotion="css"></style>
+
+  <style>
+    body {
+      background-color: #c0c0c0;
+    }
+
+    .dropbtn {
+      color: #42526e;
+      border: none;
+      font-size: 15px;
+      background-color: #f0f0f0;
+      line-height: 10px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f0f0f0;
+      min-width: 250px;
+      /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
+      z-index: 1;
+      right: 0px;
+
+    }
+
+    .dropdown-content a {
+      color: #42526e;
+      padding: 0px 12px;
+      text-decoration: none;
+      display: block;
+      font-weight: 700;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #dedfe2;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: #dedfe2;
+    }
+
+    /* Google Icons  */
+    .material-icons-new {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .icon-white {
+      webkit-filter: contrast(4) invert(1);
+      -moz-filter: contrast(4) invert(1);
+      -o-filter: contrast(4) invert(1);
+      -ms-filter: contrast(4) invert(1);
+      filter: contrast(4) invert(1);
+    }
+
+    /* Rules for sizing the icon. */
+    .material-icons.md-18 {
+      font-size: 18px;
+    }
+
+    .material-icons.md-24 {
+      font-size: 24px;
+    }
+
+    .material-icons.md-36 {
+      font-size: 36px;
+    }
+
+    .material-icons.md-48 {
+      font-size: 48px;
+    }
+
+    /* Rules for using icons as black on a light background. */
+    .material-icons.md-dark {
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    .material-icons.md-dark.md-inactive {
+      color: rgba(0, 0, 0, 0.26);
+    }
+
+    /* Rules for using icons as white on a dark background. */
+    .material-icons.md-light {
+      color: rgba(255, 255, 255, 1);
+    }
+
+    .material-icons.md-light.md-inactive {
+      color: rgba(255, 255, 255, 0.3);
+    }
+  </style>
 
   <script>
     function pageReady() {
@@ -22,28 +136,80 @@
         x.style.height = "50px";
         x.style.boxShadow = "0px 1px 5px 3px rgba(192,192,192,.8)";
         x.style.position = "fixed";
-        x.style.top = "0";
+        // x.style.top = document.getElementById("abc_systemBackground").clientHeight + "px";
         // x.style.width = "826px";
-        x.style.left = "0";
+        x.style.top = "0px";
+        x.style.left = "0px";
         x.style.width = "100%";
         document.getElementsByClassName("cHBcts")[0].style.overflow = "hidden"  //Firefox specific to hide the vertical scrollbar
+        // var a = document.getElementById("abc_systemBackground").clientHeight;
+        // console.log(a);
       }, 1000);
+    }
+
+    function abc_load() {
+      var x = document.getElementsByClassName("ProseMirror")[0];
+      x.innerHTML = "Document loaded at: " + Date();
+    }
+
+    function abc_room() {
+      console.log('Note: Line 94252 ( t = new Mn("wss://demos.yjs.dev", "atlaskit", e), ) --> "atlaskit"');
+    }
+
+    function abc_users() {
+      console.log('list of users...');
+    }
+
+    function abc_saveFile() {
+      var btn = ($('.btn-group > .btn.active').text()).trim();
+      switch (btn) {
+        case "Local drive":
+          //Create a blob and save it as a text file
+          var file = new Blob([document.getElementsByClassName("ProseMirror")[0].innerHTML], { type: 'text/plain' });
+          var a = document.createElement("a"), url = URL.createObjectURL(file);
+          a.href = url;
+          console.log(btn);
+          a.download = document.getElementById("abc_saveFilename").value;
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(function () {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+          }, 0);
+          break;
+        case "PDF":
+          //PDF stub
+          break;
+        case "Email":
+          //Email stub
+          break;
+        case "Cookie":
+          //Cookie stub
+          break;
+        case "Clipboard":
+          //Clipboard stub
+          break;
+      }
+
     }
   </script>
 
 </head>
 
 <body style="margin:0px;" onload="pageReady()">
-  <div id="abc_background" style="background-color: #c0c0c0; width:100%; padding-top: 20px; padding-bottom: 20px;">
-    <div id="editor" style="width:826px; background-color: #ffffff; margin: auto; margin-top: 50px; -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75); box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);">
-      <div style="width: 100%; position: relative; height: 0px; border-style: none;"><object type="text/html"
-          aria-hidden="true" tabindex="-1"
+
+  <div id="abc_editorBackground" class="container-fluid"
+    style="background-color: #c0c0c0; width:100%; padding-top: 20px; padding-bottom: 20px;">
+    <div id="editor"
+      style="width:826px; background-color: #ffffff; margin: auto; margin-top: 50px; -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75); box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);">
+      <div style="width: 100%; position: relative; height: 0px; border-style: none;">
+        <object type="text/html" aria-hidden="true" tabindex="-1"
           style="display: block; position: absolute; top: 0px; left: 0px; height: 0px; width: 100%; opacity: 0; overflow: hidden; pointer-events: none; z-index: -1;"
           data=""></object>
       </div>
       <div class="akEditor sc-jVODtj iGdDoP">
+        <!-- toolbar container -->
         <div class="sc-fONwsr kGpjoL">
-          <!-- toolbar container -->
           <div style="width: 100%; min-width: 254px;">
             <div style="width: 100%; position: relative;">
               <div class="sc-fAjcbJ iHHUto"><span class="sc-ifAKCX gSwprm">
@@ -101,7 +267,8 @@
                                     width="24" height="24" viewBox="0 0 24 24" focusable="false" role="presentation">
                                     <path
                                       d="M7 7h10a1 1 0 0 1 0 2H7a1 1 0 1 1 0-2zm0 4h10a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2zm0 4h5a1 1 0 0 1 0 2H7a1 1 0 0 1 0-2z"
-                                      fill="currentColor" fill-rule="evenodd"></path>
+                                      fill="currentColor" fill-rule="evenodd">
+                                    </path>
                                   </svg></span><span class="sc-lhVmIH eREdfJ"><span class="sc-fjdhpX doBvDK"
                                     aria-label="Alignment"><svg width="24" height="24" viewBox="0 0 24 24"
                                       focusable="false" role="presentation">
@@ -251,14 +418,152 @@
     </div>
   </div>
 
-  <div id="abc_moreTools" style="position: fixed; top: 0px; right: 20px; z-index: 501; line-height: 50px; height: 50px; font-family:Arial, Helvetica, sans-serif; color: #42526e; font-size: 17px;">
-    Room, Users, Save, Load
+  <!-- Collaborate menu -->
+  <div id="abc_moreTools"
+    style="position: fixed; top: 0px; right: 20px; z-index: 501; line-height: 50px; height: 50px; font-family:Arial, Helvetica, sans-serif; color: #42526e; font-size: 17px;">
+    <div class="dropdown">
+      <button class="dropbtn">Collaborate
+        <svg width="24" height="24" viewBox="0 0 24 24" style="top: -2px; position:relative;">
+          <path
+            d="M8.292 10.293a1.009 1.009 0 0 0 0 1.419l2.939 2.965c.218.215.5.322.779.322s.556-.107.769-.322l2.93-2.955a1.01 1.01 0 0 0 0-1.419.987.987 0 0 0-1.406 0l-2.298 2.317-2.307-2.327a.99.99 0 0 0-1.406 0z"
+            fill="currentColor" fill-rule="evenodd"></path>
+        </svg></span>
+      </button>
+      <div class="dropdown-content">
+        <a href="#" onclick="abc_room()">Room <span
+            style="border-color: #42526e; border-radius: 5px; border-style: solid; border-width: 1px; background-color: #fff; color:#667897; font-size: 15px; font-weight: 500;">
+            &nbsp;1234-5678-90ab-cdef&nbsp;
+          </span></a>
+        <a href="#" onclick="abc_users()">Users <span style="font-weight: 500;">
+            &nbsp;me + 2 others&nbsp;
+          </span></a>
+        <a href="#" onclick="abc_load()">Open</a>
+        <a href="#" data-toggle="modal" data-target="#modalSave">Save</a>
+      </div>
+    </div>
   </div>
 
-  <p></p>
-  Note: Line 94252 ( t = new Mn("wss://demos.yjs.dev", "atlaskit", e), ) --> "atlaskit"<br>
-  InnerHTML (content) begins at "data-gramm"
-  <p></p>
+  <!-- Save Modal -->
+  <div class="modal fade" id="modalSave" tabindex="-1" role="dialog" aria-labelledby="modalSaveTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalSaveTitle">Save document</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Save to:</br>
+          <div id="abc_saveBtns" class="btn-group btn-group-toggle d-flex justify-content-center" data-toggle="buttons">
+            <label class="btn btn-primary active" data-toggle="collapse" href="#saveOptions1" role="button"
+              aria-expanded="false" aria-controls="saveOptions1">
+              <input type="radio" name="options" id="option1" autocomplete="off" checked><i
+                class="material-icons-new icon-white md-18 outline-save"></i></br>Local drive
+            </label>
+            <label class="btn btn-primary" data-toggle="collapse" href="#saveOptions2" role="button"
+              aria-expanded="false" aria-controls="saveOptions2">
+              <input type="radio" name="options" id="option2" autocomplete="off" disabled><i
+                class="material-icons-new icon-white md-18 outline-picture_as_pdf"></i></br>PDF
+            </label>
+            <label class="btn btn-primary" data-toggle="collapse" href="#saveOptions3" role="button"
+              aria-expanded="false" aria-controls="saveOptions3">
+              <input type="radio" name="options" id="option3" autocomplete="off"><i
+                class="material-icons-new icon-white md-18 outline-email"></i></br>Email
+            </label>
+            <label class="btn btn-primary" data-toggle="collapse" href="#saveOptions4" role="button"
+              aria-expanded="false" aria-controls="saveOptions4">
+              <input type="radio" name="options" id="option4" autocomplete="off"><i
+                class="material-icons-new icon-white md-18 outline-cloud_download"></i></br>Cookie
+            </label>
+            <label class="btn btn-primary" data-toggle="collapse" href="#saveOptions5" role="button"
+              aria-expanded="false" aria-controls="saveOptions5" onclick="
+              var x = document.getElementById('abc_saveClipboard');
+              x.value = document.getElementsByClassName('ProseMirror')[0].innerHTML;
+              x.select();
+              document.execCommand('copy');
+              // $('#abc_toast').toast('show');
+            ">
+              <input type="radio" name="options" id="option5" autocomplete="off"><i
+                class="material-icons-new icon-white md-18 outline-file_copy"></i></br>Clipboard
+            </label>
+          </div>
+        </div>
+        <div class="accordion" id="saveAccordion">
+          <div class="collapse multi-collapse show" id="saveOptions1" data-parent="#saveAccordion">
+            <div class="card card-body">
+              <div class="col-auto">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="material-icons-new md-18 outline-save"></i></div>
+                  </div>
+                  <input type="text" class="form-control" id="abc_saveFilename" placeholder="filename">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="collapse multi-collapse" id="saveOptions2" data-parent="#saveAccordion">
+            <div class="card card-body">
+              <div class="col-auto">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="material-icons-new md-18 outline-picture_as_pdf"></i></div>
+                  </div>
+                  <input type="text" class="form-control" id="abc_savePDFname" placeholder="PDF filename">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="collapse multi-collapse" id="saveOptions3" data-parent="#saveAccordion">
+            <div class="card card-body">
+              To do: Send email to all collaborators / toggle users
+            </div>
+          </div>
+          <div class="collapse multi-collapse" id="saveOptions4" data-parent="#saveAccordion">
+            <div class="card card-body">
+              <div class="col-auto">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="material-icons-new md-18 outline-cloud_download"></i></div>
+                  </div>
+                  <input type="text" class="form-control" id="abc_saveCookie" placeholder="Time to live (days)">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="collapse multi-collapse" id="saveOptions5" data-parent="#saveAccordion">
+            <div class="card card-body">
+              <div class="col-auto">
+                <textarea class="form-control" id="abc_saveClipboard" rows="10"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="abc_saveFile()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toasts -->
+  <div aria-live="assertive" role="alert" aria-atomic="true"
+    style="position: relative; min-height: 200px; min-width: 250px;">
+    <div class="toast hide" data-delay="3000" id="abc_toast" style="position: absolute; top: 0px; right: 0px;">
+      <div class="toast-header">
+        <i class="material-icons-new md-18 outline-people"></i>
+        <strong class="mr-auto">Instant Meeting</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body">
+        Content copied to clipboard
+      </div>
+    </div>
+  </div>
 
 </body>
 

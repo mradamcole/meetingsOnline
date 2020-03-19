@@ -27,7 +27,8 @@ placeholder:after {
 .ProseMirror h4:first-child,
 .ProseMirror h5:first-child,
 .ProseMirror h6:first-child {
-    margin-top: 16px
+    margin-top: 16px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .ProseMirror-yjs-cursor {
@@ -46,7 +47,7 @@ placeholder:after {
     top: -1.05em;
     font-size: 13px;
     background-color: rgb(250, 129, 0);
-    font-family: serif;
+    font-family:  Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
     line-height: normal;
