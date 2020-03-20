@@ -12,8 +12,6 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://storage.googleapis.com/non-spec-apps/mio-icons/latest/outline.css">
   <!-- Bootstrap: local -->
   <!-- <link rel="stylesheet" href="../bootstrap-4.4.1-dist/css/bootstrap.min.css">
   <script src="../bootstrap-4.4.1-dist/js/bootstrap.min.js"></script> -->
@@ -25,6 +23,11 @@
   <script charset="utf-8" src="vendors_@atlaskit-internal-editor-datepicker.bundle.js"></script>
   <script charset="utf-8" src="vendors_@atlaskit-internal-editor-core-floating-toolbar.bundle.js"></script>
   <style data-emotion="css"></style>
+
+  <!-- Misc -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="https://storage.googleapis.com/non-spec-apps/mio-icons/latest/outline.css">
+  <script src="templates.js"></script>
 
   <style>
     body {
@@ -144,12 +147,15 @@
         document.getElementsByClassName("cHBcts")[0].style.overflow = "hidden"  //Firefox specific to hide the vertical scrollbar
         // var a = document.getElementById("abc_systemBackground").clientHeight;
         // console.log(a);
-      }, 1000);
-    }
 
-    function abc_load() {
-      var x = document.getElementsByClassName("ProseMirror")[0];
-      x.innerHTML = "Document loaded at: " + Date();
+        //Generate list of templates
+        // var s = "";
+        // for (var i = 0; i < abc_templates.length; i++) {
+        //   s += "<button type='button' class='btn btn-outline-secondary text-left'>" + abc_templates[i][0] + "</button>";
+        // }
+        // document.getElementById("abc_templateList").innerHTML = s;
+        // s = null;
+      }, 1000);
     }
 
     function abc_room() {
@@ -160,15 +166,16 @@
       console.log('list of users...');
     }
 
-    function abc_saveFile() {
-      var btn = ($('.btn-group > .btn.active').text()).trim();
-      switch (btn) {
-        case "Local drive":
+    function abc_collaborate(op) {
+      var btns = ($('.btn-group > .btn.active').text()).trim().replace(/\s+/g, ',').split(",");
+      var btn = (op == "save" ? btns[0] : btns[1]);
+      btns = null;
+      switch (op + btn) {
+        case "saveFile":
           //Create a blob and save it as a text file
           var file = new Blob([document.getElementsByClassName("ProseMirror")[0].innerHTML], { type: 'text/plain' });
           var a = document.createElement("a"), url = URL.createObjectURL(file);
           a.href = url;
-          console.log(btn);
           a.download = document.getElementById("abc_saveFilename").value;
           document.body.appendChild(a);
           a.click();
@@ -177,20 +184,44 @@
             window.URL.revokeObjectURL(url);
           }, 0);
           break;
-        case "PDF":
-          //PDF stub
+        case "savePDF":
+          //save PDF stub
           break;
-        case "Email":
-          //Email stub
+        case "saveEmail":
+          //save Email stub
           break;
-        case "Cookie":
-          //Cookie stub
+        case "saveCookie":
+          //save Cookie stub
           break;
-        case "Clipboard":
-          //Clipboard stub
+        case "saveClipboard":
+          //save Clipboard stub
+          break;
+        case "openTemplate":
+          //open Template stub
+          var t=-1;
+          var x = document.getElementsByName('abc_openTemplateList');
+          for (var i = 0; i < x.length; i++) {
+            if (x[i].checked) { t=i }
+          }
+          if (t>=0) {
+            document.getElementsByClassName("ProseMirror")[0].innerHTML = abc_templates[t][1];
+
+          }
+          break;
+        case "openFile":
+          //open File stub
+          break;
+        case "openCookie":
+          //open Cookie stub
+          break;
+        case "openClipboard":
+          //open Clipboard stub
           break;
       }
+    }
 
+    function abc_openFile() {
+      alert(1);
     }
   </script>
 
@@ -437,7 +468,7 @@
         <a href="#" onclick="abc_users()">Users <span style="font-weight: 500;">
             &nbsp;me + 2 others&nbsp;
           </span></a>
-        <a href="#" onclick="abc_load()">Open</a>
+        <a href="#" data-toggle="modal" data-target="#modalOpen">Open</a>
         <a href="#" data-toggle="modal" data-target="#modalSave">Save</a>
       </div>
     </div>
@@ -460,11 +491,11 @@
             <label class="btn btn-primary active" data-toggle="collapse" href="#saveOptions1" role="button"
               aria-expanded="false" aria-controls="saveOptions1">
               <input type="radio" name="options" id="option1" autocomplete="off" checked><i
-                class="material-icons-new icon-white md-18 outline-save"></i></br>Local drive
+                class="material-icons-new icon-white md-18 outline-save"></i></br>File
             </label>
             <label class="btn btn-primary" data-toggle="collapse" href="#saveOptions2" role="button"
               aria-expanded="false" aria-controls="saveOptions2">
-              <input type="radio" name="options" id="option2" autocomplete="off" disabled><i
+              <input type="radio" name="options" id="option2" autocomplete="off"><i
                 class="material-icons-new icon-white md-18 outline-picture_as_pdf"></i></br>PDF
             </label>
             <label class="btn btn-primary" data-toggle="collapse" href="#saveOptions3" role="button"
@@ -483,7 +514,6 @@
               x.value = document.getElementsByClassName('ProseMirror')[0].innerHTML;
               x.select();
               document.execCommand('copy');
-              // $('#abc_toast').toast('show');
             ">
               <input type="radio" name="options" id="option5" autocomplete="off"><i
                 class="material-icons-new icon-white md-18 outline-file_copy"></i></br>Clipboard
@@ -542,25 +572,93 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="abc_saveFile()">Save changes</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="abc_collaborate('save')">Save
+            changes</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Toasts -->
-  <div aria-live="assertive" role="alert" aria-atomic="true"
-    style="position: relative; min-height: 200px; min-width: 250px;">
-    <div class="toast hide" data-delay="3000" id="abc_toast" style="position: absolute; top: 0px; right: 0px;">
-      <div class="toast-header">
-        <i class="material-icons-new md-18 outline-people"></i>
-        <strong class="mr-auto">Instant Meeting</strong>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="toast-body">
-        Content copied to clipboard
+  <!-- Open Modal -->
+  <div class="modal fade" id="modalOpen" tabindex="-1" role="dialog" aria-labelledby="modalOpenTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalOpenTitle">Open document</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Open document:</br>
+          <div id="abc_openBtns" class="btn-group btn-group-toggle d-flex justify-content-center" data-toggle="buttons">
+            <label class="btn btn-primary active" data-toggle="collapse" href="#openOptions11" role="button"
+              aria-expanded="false" aria-controls="openOptions11">
+              <input type="radio" name="options" id="option11" autocomplete="off" checked><i
+                class="material-icons-new icon-white md-18 outline-flight_takeoff"></i></br>Template
+            </label>
+            <label class="btn btn-primary" data-toggle="collapse" href="#openOptions12" role="button"
+              aria-expanded="false" aria-controls="openOptions12">
+              <input type="radio" name="options" id="option12" autocomplete="off"><i
+                class="material-icons-new icon-white md-18 outline-save"></i></br>File
+            </label>
+            <label class="btn btn-primary" data-toggle="collapse" href="#openOptions13" role="button"
+              aria-expanded="false" aria-controls="openOptions13">
+              <input type="radio" name="options" id="option13" autocomplete="off"><i
+                class="material-icons-new icon-white md-18 outline-cloud_upload"></i></br>Cookie
+            </label>
+            <label class="btn btn-primary" data-toggle="collapse" href="#openOptions14" role="button"
+              aria-expanded="false" aria-controls="openOptions14">
+              <input type="radio" name="options" id="option14" autocomplete="off"><i
+                class="material-icons-new icon-white md-18 outline-file_copy"></i></br>Clipboard
+            </label>
+          </div>
+        </div>
+        <div class="accordion" id="openAccordion">
+          <div class="collapse multi-collapse show" id="openOptions11" data-parent="#openAccordion">
+            <div class="card card-body">
+              <div class="btn-group-vertical" role="group" aria-label="Templates" id="abc_templateList"
+                data-toggle="buttons">
+                <!-- dynamically generate list of tempaltes -->
+                <script>
+                  for (var i = 0; i < abc_templates.length; i++) {
+                    document.writeln("<label class='btn btn-outline-secondary text-left'><input type='radio' name='abc_openTemplateList' id='" + i + "'>" + abc_templates[i][0] + "</label>");
+                  }
+                </script>
+              </div>
+            </div>
+          </div>
+          <div class="collapse multi-collapse" id="openOptions12" data-parent="#openAccordion">
+            <div class="card card-body">
+              <div class="col-auto">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="material-icons-new md-18 outline-save"></i></div>
+                  </div>
+                  <input type="text" class="form-control" id="abc_openFile" placeholder="To do: upload file & sanitize">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="collapse multi-collapse" id="openOptions13" data-parent="#openAccordion">
+            <div class="card card-body">
+              To do: retrieve & sanitize cookie
+            </div>
+          </div>
+          <div class="collapse multi-collapse" id="openOptions14" data-parent="#openAccordion">
+            <div class="card card-body">
+              <div class="col-auto">
+                <textarea class="form-control" id="abc_openClipboard" rows="10"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="abc_collaborate('open')">Open
+            document</button>
+        </div>
       </div>
     </div>
   </div>
