@@ -17,6 +17,10 @@
   <script src="../bootstrap-4.4.1-dist/js/bootstrap.min.js"></script> -->
 
   <!-- Atlas -->
+  <script>
+    //Set the room number (before loading atlaskit.bundle.js)
+    abc_roomnum="atlaskit2"
+  </script>
   <script type="text/javascript" src="atlaskit.bundle.js" async=""></script>
   <link rel="stylesheet" href="atlas.css">
   <style data-styled-components=""></style>
@@ -27,6 +31,8 @@
   <!-- Misc -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   <link rel="stylesheet" href="https://storage.googleapis.com/non-spec-apps/mio-icons/latest/outline.css">
+  <!-- <script src="https://cdn.jsdelivr.net/gh/jitbit/HtmlSanitizer@master/HtmlSanitizer.js"></script> -->
+  <script src="../HtmlSanitizer-master/HtmlSanitizer.js"></script>
   <script src="templates.js"></script>
 
   <style>
@@ -134,6 +140,7 @@
   <script>
     function pageReady() {
       setTimeout(function () {
+        //prettify the toolbar
         var x = document.getElementsByClassName("kGpjoL")[0];
         x.style.backgroundColor = "#f0f0f0";
         x.style.height = "50px";
@@ -148,15 +155,44 @@
         // var a = document.getElementById("abc_systemBackground").clientHeight;
         // console.log(a);
 
-        //Generate list of templates
-        // var s = "";
-        // for (var i = 0; i < abc_templates.length; i++) {
-        //   s += "<button type='button' class='btn btn-outline-secondary text-left'>" + abc_templates[i][0] + "</button>";
-        // }
-        // document.getElementById("abc_templateList").innerHTML = s;
-        // s = null;
+        //Add white listings to the sanitizer
+        HtmlSanitizer.AllowedTags['path'] = true;
+        HtmlSanitizer.AllowedTags['svg'] = true;
+        HtmlSanitizer.AllowedAttributes['contenteditable'] = true;
+        HtmlSanitizer.AllowedAttributes['class'] = true;
+        HtmlSanitizer.AllowedAttributes['draggable'] = true;
+        HtmlSanitizer.AllowedAttributes['aria-label'] = true;
+        HtmlSanitizer.AllowedAttributes['focusable'] = true;
+        HtmlSanitizer.AllowedAttributes['viewBox'] = true;
+        HtmlSanitizer.AllowedAttributes['d'] = true;
+        HtmlSanitizer.AllowedAttributes['data-panel-type'] = true;
+        HtmlSanitizer.AllowedAttributes['data-align'] = true;
+        HtmlSanitizer.AllowedAttributes['timestamp'] = true;
+        HtmlSanitizer.AllowedAttributes['role'] = true;
+        HtmlSanitizer.AllowedAttributes['fill'] = true;
+        HtmlSanitizer.AllowedAttributes['fill-rule'] = true;
       }, 1000);
     }
+
+    //Test sanitizer
+    // function findFirstDiffPos(a, b) {
+    //   var longerLength = Math.max(a.length, b.length);
+    //   for (var i = 0; i < longerLength; i++) {
+    //     if (a[i] !== b[i]) return i;
+    //   }
+    //   return -1;
+    // }
+    // function abc_testSanitzer(html) {
+    //   var dirty = html.replace(/\s/g, '').toLowerCase();
+    //   var clean = HtmlSanitizer.SanitizeHtml(html).replace(/\s/g, '').toLowerCase();
+    //   var firstOcc = findFirstDiffPos(dirty, clean);
+    //   console.log("*************************\nDIRTY:\n" + dirty);
+    //   console.log(".........................\nCLEAN:\n" + clean);
+    //   console.log(".........................\nDIFF:\n" + firstOcc);
+    //   console.log(dirty.substring(0, firstOcc));
+    //   console.log("DIRTY >> " + dirty.substr(firstOcc,40));
+    //   console.log("CLEAN >> " + clean.substr(firstOcc,40));
+    // }
 
     function abc_room() {
       console.log('Note: Line 94252 ( t = new Mn("wss://demos.yjs.dev", "atlaskit", e), ) --> "atlaskit"');
@@ -198,14 +234,14 @@
           break;
         case "openTemplate":
           //open Template stub
-          var t=-1;
+          var t = -1;
           var x = document.getElementsByName('abc_openTemplateList');
           for (var i = 0; i < x.length; i++) {
-            if (x[i].checked) { t=i }
+            if (x[i].checked) { t = i }
           }
-          if (t>=0) {
-            document.getElementsByClassName("ProseMirror")[0].innerHTML = abc_templates[t][1];
-
+          if (t >= 0) {
+            // abc_testSanitzer(abc_templates[t][1]);
+            document.getElementsByClassName("ProseMirror")[0].innerHTML = HtmlSanitizer.SanitizeHtml(abc_templates[t][1]);
           }
           break;
         case "openFile":
@@ -216,6 +252,7 @@
           break;
         case "openClipboard":
           //open Clipboard stub
+          document.getElementsByClassName("ProseMirror")[0].innerHTML = document.getElementById("abc_openClipboard").value ;
           break;
       }
     }
@@ -557,7 +594,11 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text"><i class="material-icons-new md-18 outline-cloud_download"></i></div>
                   </div>
-                  <input type="text" class="form-control" id="abc_saveCookie" placeholder="Time to live (days)">
+                  <input type="text" class="form-control" id="abc_saveCookie" placeholder="filename">
+                  <div class="alert alert-warning" role="alert">
+                    Cookies are volatile. E.g. clearing your browser cache is but one way to erase cookies.
+                  </div>
+                  Todo: investigate local/WHATWG DOM storage; encrypt local storage
                 </div>
               </div>
             </div>
@@ -623,7 +664,7 @@
                 <!-- dynamically generate list of tempaltes -->
                 <script>
                   for (var i = 0; i < abc_templates.length; i++) {
-                    document.writeln("<label class='btn btn-outline-secondary text-left'><input type='radio' name='abc_openTemplateList' id='" + i + "'>" + abc_templates[i][0] + "</label>");
+                    document.writeln("<label class='btn btn-outline-secondary text-left'><input type='radio' name='abc_openTemplateList' id='" + i + "'> " + abc_templates[i][0] + "</label>");
                   }
                 </script>
               </div>
